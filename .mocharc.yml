@@ -1,0 +1,13 @@
+diff: true # * Show differences in failed assertions
+extension: ['.ts']
+package: './package.json'
+ui: 'bdd'
+bail: false # * Do not stop on first test failure
+timeout: 9000
+recursive: true
+require: ['tsx']
+watch-files: ['test/**/*.test.ts']
+exclude: ['test/**/*.tpl.ts']
+reporter: 'mocha-multi-reporters'
+'reporter-option':
+  - configFile=./multi-report-config.json

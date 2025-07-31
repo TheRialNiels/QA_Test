@@ -1,0 +1,16 @@
+{
+  "reporterEnabled": "mochawesome",
+  "mochawesomeReporterOptions": {
+    "reportDir": "./reports/mochawesome-report",
+    "reportFilename": "[name]-[datetime]-report",
+    "reportTitle": "test-automation",
+    "overwrite": true,
+    "timestamp": "mm/dd/yyy-HH:mm:ss",
+    "enableCode": "false",
+    "autoOpen": true,
+    "showPassed": true,
+    "showFailed": true,
+    "showSkipped": false,
+    "showPending": false
+  }
+}
