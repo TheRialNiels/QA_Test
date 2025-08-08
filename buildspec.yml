@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+    install:
+        runtime-versions:
+            nodejs: 22
+    pre_build:
+        commands:
+            - npm ci
+    build:
+        commands:
+            - npm start $COMMAND || true
+    post_build:
+        commands:
+            - aws s3 cp reports/mochawesome-report s3://$REPORTS_BUCKET/reports/$CODEBUILD_BUILD_NUMBER/ --recursive --include="*"
