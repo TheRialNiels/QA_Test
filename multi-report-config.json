@@ -1,16 +1,15 @@
 {
-  "reporterEnabled": "mochawesome",
   "mochawesomeReporterOptions": {
-    "reportDir": "./reports/mochawesome-report",
-    "reportFilename": "[name]-[datetime]-report",
-    "reportTitle": "test-automation",
-    "overwrite": true,
-    "timestamp": "mm/dd/yyy-HH:mm:ss",
-    "enableCode": "false",
     "autoOpen": true,
-    "showPassed": true,
+    "enableCode": "false",
+    "overwrite": true,
+    "reportDir": "./reports/mochawesome-report",
+    "reportFilename": "qa-report",
+    "reportTitle": "test-automation",
     "showFailed": true,
-    "showSkipped": false,
-    "showPending": false
-  }
+    "showPassed": true,
+    "showPending": false,
+    "showSkipped": false
+  },
+  "reporterEnabled": "mochawesome"
 }
