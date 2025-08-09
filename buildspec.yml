@@ -1,15 +1,26 @@
 version: 0.2
 
 phases:
-    install:
-        runtime-versions:
-            nodejs: 22
-    pre_build:
-        commands:
-            - npm ci
-    build:
-        commands:
-            - npm start $COMMAND || true
-    post_build:
-        commands:
-            - aws s3 cp reports/mochawesome-report s3://$REPORTS_BUCKET/reports/$CODEBUILD_BUILD_NUMBER/ --recursive --include="*"
+  install:
+    runtime-versions:
+      nodejs: 22
+  pre_build:
+    commands:
+      - npm ci
+  build:
+    commands:
+      - npm start $COMMAND || true
+  post_build:
+    commands:
+      - aws s3 cp reports/mochawesome-report s3://$REPORTS_BUCKET/reports/$CODEBUILD_BUILD_NUMBER/ --recursive --include="*"
+      - |
+        if [ "$CODEBUILD_BUILD_SUCCEEDING" = "1" ]; then
+          TEST_STATUS="SUCCEEDED"
+        else
+          TEST_STATUS="FAILED"
+        fi
+        MESSAGE="The tests was: $TEST_STATUS
+
+        The report can be find in the following link:
+        $BUCKET_URL/reports/$CODEBUILD_BUILD_NUMBER/qa-report.html"
+        aws sns publish --topic-arn $SNS_TOPIC_ARN --message "$MESSAGE" --subject "QA Test Results - $TEST_STATUS"
