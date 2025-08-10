@@ -12,4 +12,4 @@ phases:
       - npm start $COMMAND || true
   post_build:
     commands:
-      - aws s3 cp reports/mochawesome-report s3://$REPORTS_BUCKET/reports/$CODEBUILD_BUILD_NUMBER/ --recursive --include="*"
+      - aws s3 cp reports/mochawesome-report s3://$REPORTS_BUCKET/reports/$CODEBUILD_BUILD_NUMBER/ --recursive --include="*" || true
