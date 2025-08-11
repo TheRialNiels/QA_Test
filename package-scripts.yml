@@ -1,4 +1,7 @@
 scripts:
   test:
     default: 'mocha --config .mocharc.yml'
-    quickTest: 'nps "test --grep "@quickTest@""'
+    quickTest:
+      all: 'nps "test --grep "@quickTest@""'
+      successExample: 'nps "test --grep "@successExample@""'
+      failureExample: 'nps "test --grep "@failureExample@""'
